@@ -70,3 +70,48 @@ if (window.localStorage.bgRandom == "yes") {
 } else {
     disActiveRandom.click();
 }
+
+// skills progress animation
+let bars = Array.from(
+    document.querySelectorAll(
+        ".our-skills .container .skills .skill .bar .progress"
+    )
+);
+
+// image popup
+let galleryImages = Array.from(
+    document.querySelectorAll(".gallery .images > img")
+);
+let popup = document.querySelector(".gallery .image-popup");
+let overlay = document.getElementsByClassName("overlay")[1];
+let exitPopup = document.querySelector(".gallery .image-popup span");
+let popupImage = document.querySelector(".gallery .image-popup > img");
+let popupHeading = document.querySelector(".gallery .image-popup > h3");
+
+galleryImages.forEach((image) => {
+    image.addEventListener("click", () => {
+        overlay.style.display = `block`;
+        popup.style.display = `block`;
+
+        popupImage.setAttribute("src", `${image.getAttribute("src")}`);
+        popupHeading.textContent = `image ${image.getAttribute("data-num")}`;
+    });
+});
+
+exitPopup.addEventListener("click", () => {
+    overlay.style.display = `none`;
+    popup.style.display = `none`;
+});
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY >= 900) {
+        bars.forEach((bar) => {
+            bar.style.width = `${bar.getAttribute("data-width")}`;
+        });
+    }
+    
+    if (window.scrollY >= 1300) {
+        document.querySelector('.gallery .images').style.opacity = `1`;
+        document.querySelector('.gallery .images').style.transform = `translateY(0)`;
+    }
+});
