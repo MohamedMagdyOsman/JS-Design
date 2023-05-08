@@ -103,15 +103,36 @@ exitPopup.addEventListener("click", () => {
     popup.style.display = `none`;
 });
 
+// about us animation
+let aboutText = document.querySelector(".about-us .container .text");
+let aboutImage = document.querySelector(".about-us .container .image");
+
 window.addEventListener("scroll", () => {
+    if (window.scrollY >= 500) {
+        aboutText.style.transform = `translateX(0)`;
+        aboutText.style.opacity = `1`;
+
+        aboutImage.style.transform = `translateX(0)`;
+        aboutImage.style.opacity = `1`;
+    }
+
     if (window.scrollY >= 900) {
         bars.forEach((bar) => {
             bar.style.width = `${bar.getAttribute("data-width")}`;
         });
     }
-    
+
     if (window.scrollY >= 1300) {
-        document.querySelector('.gallery .images').style.opacity = `1`;
-        document.querySelector('.gallery .images').style.transform = `translateY(0)`;
+        document.querySelector(".gallery .images").style.opacity = `1`;
+        document.querySelector(
+            ".gallery .images"
+        ).style.transform = `translateY(0)`;
+    }
+
+    if (window.scrollY >= 3000) {
+        let features = document.querySelector('.our-features .features');
+
+        features.style.opacity = `1`;
+        features.style.transform = `translateY(0)`;
     }
 });
